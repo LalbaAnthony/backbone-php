@@ -19,6 +19,7 @@
   - [ ] Filters
 - [ ] Faire bouton suppr dans page edit de post
 - [ ] Models
+  - [ ] Ne pas faire SELECT * dans les models, mais juste les champs necessaires, pour perfs (utiliser array_intersect_key avec get_object_vars? ou getFillableColumns() ?)
   - [ ] Trouver une solution pour les relations, deplacer contenu de detach, syncCategories dans Model et n'avoir qu'a instancer des methods abstractes dans les models enfants
    	- [ ] Ajouter with pour ne pas faire plusieurs requetes si veut afficher tout les categories d'une liste de post https://chatgpt.com/share/6818c1bb-7840-8008-b1b2-ec812f1e880a
    	- [ ] Ajouter categories dans retour API + arraySafe dans les relations
