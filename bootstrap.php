@@ -6,7 +6,7 @@ use App\Database\DatabaseManager;
 require_once __DIR__ . '/autoloader.php';
 require_once __DIR__ . '/exceptionhandler.php';
 
-require_once __DIR__ . '/dotenvloader.php';
+require_once __DIR__ . '/dotenvloader.php'; // Load environment variables in $_envs file
 
 require_once __DIR__ . '/config/app.php';
 require_once __DIR__ . '/config/database.php';

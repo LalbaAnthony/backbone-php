@@ -586,7 +586,7 @@ abstract class Model
         $result = self::db()->execute($sql, $params);
 
         if ($result) return true;
-
+&
         return false;
     }
 
