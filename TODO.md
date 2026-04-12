@@ -1,5 +1,6 @@
 - [ ] Random
   - [ ] Bool dans les forms (checkbox)
+  - [ ] Request: renomer $params en $query et $patterns en $params pour fit avec express JS
 
 - [ ] Bugs
   - [ ] Error 500 isnt displayed on full page but in the none working part of the page only
