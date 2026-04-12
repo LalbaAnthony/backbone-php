@@ -2,6 +2,12 @@
   - [ ] Bool dans les forms (checkbox)
   - [ ] Request: renomer $params en $query et $patterns en $params pour fit avec express JS
 
+- [ ] Trouver nom 
+  - [ ] Le mettre partout dans le code
+  - [ ] Rajouter numéro de version dans le code en plus du site
+  - [ ] Faire auto patch dans pipe git
+  - [ ] Recloner le repo sur tous les PC
+
 - [ ] Bugs
   - [ ] Error 500 isnt displayed on full page but in the none working part of the page only
 
@@ -13,24 +19,17 @@
 - [ ] Faire PHP doc sur classes et méthodes
 - [ ] Traiter TODO et WIP du code
 
-- [ ] Trouver nom 
-  - [ ] Le mettre partout dans le code
-  - [ ] Rajouter numéro de version dans le code en plus du site
-  - [ ] Faire auto patch dans pipe git
-  - [ ] Reclone le repo sur tout les PC
-
 - [ ] Faire proto de liste pour admin
   - [ ] Filters
-- [ ] Page Edit
-  - [~] Ajouter liste des categories en multi select
-  - [ ] Faire bouton suppr dans edit
+- [ ] Faire bouton suppr dans page edit de post
 - [ ] Models
+  - [ ] Ne pas faire SELECT * dans les models, mais juste les champs necessaires, pour perfs (utiliser array_intersect_key avec get_object_vars? ou getFillableColumns() ?)
   - [ ] Trouver une solution pour les relations, deplacer contenu de detach, syncCategories dans Model et n'avoir qu'a instancer des methods abstractes dans les models enfants
-   	- [x] hasMany, belongsToMany, ...
    	- [ ] Ajouter with pour ne pas faire plusieurs requetes si veut afficher tout les categories d'une liste de post https://chatgpt.com/share/6818c1bb-7840-8008-b1b2-ec812f1e880a
-   	- [ ] Ajouter categories and retour API + arraySafe dans les relations 
+   	- [ ] Ajouter categories dans retour API + arraySafe dans les relations
   - [ ] Faire search comme le trait de laravel https://github.com/nicolaslopezj/searchable
 - [ ] Seeders
+  - [~] Faker
   - [ ] Continuer et implementer faker dans les seeders
   - [ ] Rajouter possibilité d'instancier le seeder avec des fonctions pour map des valeurs (ex: date actuelle, hash de mot de passe, ...)
 - [ ] BDD
@@ -38,7 +37,7 @@
   - [ ] Implement rollbacks for migrations, seeders, models save, ...
 - [ ] File system as storage
 - [ ] Routing
-  - [ ] Group routes (ex: /admin, /api, ...)
+  - [ ] Group routes (ex: /admin, /api, ...) en creant des sous tableaux incrementaux dans le tableau de routes
   - [ ] CORS
   - [ ] Refaire syst de hook pour appeler des composants dans les vues (genre header, footer, ...)
   - [ ] Faire layout/middleware par groupe de route: mettre header et footer des pages admins

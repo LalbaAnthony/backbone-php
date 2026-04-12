@@ -33,7 +33,7 @@ Basically, its a learning project to figure out how a framework can work under t
 - `ressources/` : contains the views, icons, ...
 - ...
 
-In the `app/` folder, folders marked with * are meant to be modified by the user to add application specific code. All the other folders are meant to contain framework code only.
+In the `app/` folder, folders marked with `*` are meant to be modified by the user to add application specific code. All the other folders are meant to contain framework code only.
 
 There is no `vendor/` folder since this project is dependency free (and will always be).
 
