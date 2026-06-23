@@ -2,7 +2,7 @@
     RewriteEngine On
 
     # If your project is in a subfolder, specify the RewriteBase
-    RewriteBase /projects/framework-php/public/
+    RewriteBase /projects/backbone-php/public/
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
