@@ -1,0 +1,24 @@
+# PHP syntax lint across every supported PHP branch. The Docker image itself runs APP_PHP_VERSION (.env.example).
+name: lint
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.2", "8.3", "8.4", "8.5"]
+    uses: ./.github/workflows/lint.inc.yml
+    with:
+      php-version: ${{ matrix.php-version }}

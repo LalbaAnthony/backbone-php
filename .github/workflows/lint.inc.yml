@@ -1,0 +1,34 @@
+# Reusable: PHP syntax lint (php -l on every *.php file) for a single PHP version.
+# Runs in the official php:<version>-cli image, the same PHP build as the Dockerfile base (php:<version>-apache).
+# Debian variant on purpose: php-lint.sh needs bash, and JS actions need glibc (no Alpine).
+name: lint
+
+on:
+  workflow_call:
+    inputs:
+      php-version:
+        description: PHP version, used as the php:<version>-cli image tag (e.g. 8.3)
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  php-lint:
+    name: php-lint (${{ inputs.php-version }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    container:
+      image: php:${{ inputs.php-version }}-cli
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Show PHP version
+        run: php -v
+
+      # Invoked through bash: the script is not executable in the git index (mode 100644).
+      - name: Lint PHP files
+        run: bash infra/scripts/php-lint.sh
