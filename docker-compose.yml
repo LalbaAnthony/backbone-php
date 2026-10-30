@@ -11,11 +11,22 @@ x-app-build: &app-build
     TZ: Europe/Paris
 
 x-app-env: &app-env
-  DOCKERIZED: true
+  APP_NAME_LONG: ${APP_NAME_LONG}
+  APP_NAME_SHORT: ${APP_NAME_SHORT}
+  APP_NAME_URL: ${APP_NAME_URL}
+  APP_DESCRIPTION: ${APP_DESCRIPTION}
+  APP_AUTHOR: ${APP_AUTHOR}
+  APP_VERSION: ${APP_VERSION}
+  APP_LANG: ${APP_LANG}
+  APP_ROOT: ${APP_ROOT}
+  APP_URL: ${APP_URL}
+  APP_ENV: ${APP_ENV}
+  APP_ROUTING_ALLOW_METHODS: ${APP_ROUTING_ALLOW_METHODS}
+  APP_ROUTING_ALLOW_ORIGIN: ${APP_ROUTING_ALLOW_ORIGIN}
   DB_HOST: ${DB_HOST:-db}
   DB_NAME: ${DB_NAME}
   DB_USER: ${DB_USER}
-  DB_PASS: ${DB_PASSWORD}
+  DB_PASS: ${DB_PASS}
   MAIL_RELAY_HOST: ${MAIL_RELAY_HOST:-mailpit}
   MAIL_RELAY_PORT: ${MAIL_RELAY_PORT:-1025}
   MAIL_DOMAIN: ${MAIL_DOMAIN:-}
@@ -44,7 +55,6 @@ x-app: &app
 
 # Shared phpMyAdmin definition. pma-dev: all interfaces + auto-login. pma-prod: 127.0.0.1 + login form.
 x-pma-env: &pma-env
-  DOCKERIZED: true
   TZ: Europe/Paris
   PMA_HOST: db
   APACHE_SERVER_NAME: localhost
@@ -113,11 +123,10 @@ services:
       timeout: 3s
       retries: 10
     environment:
-      DOCKERIZED: true
       TZ: Europe/Paris
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASS}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     # Shared by both profiles, loopback only (host DB client / SSH tunnel). DB_PORT is the host side:
     # containers always reach db:3306.
@@ -146,7 +155,7 @@ services:
       <<: *pma-env
       # Auto-login: dev only
       PMA_USER: ${DB_USER}
-      PMA_PASSWORD: ${DB_PASSWORD}
+      PMA_PASSWORD: ${DB_PASS}
 
   pma-prod:
     <<: *pma
@@ -168,7 +177,6 @@ services:
     ports:
       - "${MAILPIT_PORT:-8025}:8025"
     environment:
-      DOCKERIZED: true
       TZ: Europe/Paris
     networks:
       - common_network

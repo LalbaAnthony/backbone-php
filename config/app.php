@@ -19,4 +19,4 @@ define('APP_LANG', (string) getenv('APP_LANG') ?? '');
 define('APP_ROOT', (string) getenv('APP_ROOT') ?? '/');
 define('APP_URL', (string) getenv('APP_URL') ?? '/');
 define('APP_ENV', (string) getenv('APP_ENV') ?? 'production');
-define('APP_DEBUG', (defined('APP_ENV') && APP_ENV === 'development') ? true : false);
+define('APP_DEBUG', (defined('APP_ENV') && APP_ENV === 'dev') ? true : false); // 'dev' or 'prod'

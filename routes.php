@@ -8,7 +8,7 @@ return [
     // Scripts
     '/seed' => [
         'GET'  => function () {
-            if (APP_ENV == 'development') {
+            if (APP_ENV == 'dev') {
                 Seeder::run();
                 printLine("Database seeded successfully.");
             }
@@ -16,7 +16,7 @@ return [
     ],
     '/migrate' => [
         'GET'  => function () {
-            if (APP_ENV == 'development') {
+            if (APP_ENV == 'dev') {
                 Migrator::run();
                 printLine("Database migrated successfully.");
             }
@@ -24,7 +24,7 @@ return [
     ],
     '/reset' => [
         'GET'  => function () {
-            if (APP_ENV == 'development') {
+            if (APP_ENV == 'dev') {
                 Migrator::run();
                 Seeder::run();
                 printLine("Database reset and seeded successfully.");
@@ -34,7 +34,7 @@ return [
     // Tests
     '/sandbox' => [
         'GET'  => function () {
-            if (APP_ENV == 'development') {
+            if (APP_ENV == 'dev') {
                 require_once __DIR__ . '/public/sandbox.php';
             }
         },

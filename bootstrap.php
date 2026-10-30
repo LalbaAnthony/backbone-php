@@ -21,4 +21,4 @@ if (!gc_enabled()) gc_enable();
 
 require_once __DIR__ . '/aliases.php';
 
-DatabaseManager::init(new Database(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD));
+DatabaseManager::init(new Database(DB_HOST, DB_NAME, DB_USER, DB_PASS));
