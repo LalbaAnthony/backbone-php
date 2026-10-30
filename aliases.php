@@ -6,77 +6,77 @@ use App\Http\Router;
 use App\View\Icon;
 
 if (!function_exists('dump')) {
-    function dump(...$vars): void
+    function dump(mixed ...$vars): void
     {
         Helpers::dump(...$vars);
     }
 }
 
 if (!function_exists('dd')) {
-    function dd(...$vars): void
+    function dd(mixed ...$vars): void
     {
         Helpers::dd(...$vars);
     }
 }
 
 if (!function_exists('dataGet')) {
-    function dataGet(...$vars): mixed
+    function dataGet(mixed ...$vars): mixed
     {
         return Helpers::dataGet(...$vars);
     }
 }
 
 if (!function_exists('e')) {
-    function e(...$vars): string
+    function e(mixed ...$vars): string
     {
         return Helpers::e(...$vars);
     }
 }
 
 if (!function_exists('printLine')) {
-    function printLine(...$vars): void
+    function printLine(mixed ...$vars): void
     {
         Helpers::printLine(...$vars);
     }
 }
 
 if (!function_exists('lorem')) {
-    function lorem(...$vars): string
+    function lorem(mixed ...$vars): string
     {
         return Helpers::lorem(...$vars);
     }
 }
 
 if (!function_exists('jsonDecode')) {
-    function jsonDecode(...$vars): mixed
+    function jsonDecode(mixed ...$vars): mixed
     {
         return Helpers::jsonDecode(...$vars);
     }
 }
 
 if (!function_exists('pluck')) {
-    function pluck(...$vars): array
+    function pluck(mixed ...$vars): array
     {
         return Helpers::pluck(...$vars);
     }
 }
 
 if (!function_exists('comp')) {
-    function component(...$vars): void
+    function component(mixed ...$vars): void
     {
         Component::display(...$vars);
     }
 }
 
 if (!function_exists('icon')) {
-    function icon(...$vars): void
+    function icon(mixed ...$vars): void
     {
         Icon::display(...$vars);
     }
 }
 
 if (!function_exists('methodInputTag')) {
-    function methodInputTag(...$vars): string
+    function methodInputTag(mixed ...$vars): string
     {
         return Router::methodInputTag(...$vars);
     }

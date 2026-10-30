@@ -33,10 +33,12 @@ COPY infra/apache/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY --chmod=0644 infra/cron/crontab /etc/cron.d/app-cron
 
 COPY --chmod=0755 infra/entrypoint.sh /entrypoint.sh
+COPY --chmod=0755 infra/scripts /scripts
 
 WORKDIR /var/www/html
 
 COPY . .
+
 RUN rm -rf infra/ \
     && rm -f /usr/bin/composer
 
