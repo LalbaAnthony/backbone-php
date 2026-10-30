@@ -1,0 +1,5 @@
+* text=auto
+
+*.sh    text eol=lf
+*.bash  text eol=lf
+infra/cron/crontab text eol=lf

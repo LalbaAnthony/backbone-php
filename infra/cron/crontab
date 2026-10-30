@@ -1,0 +1,9 @@
+# Ample crons are HTTP endpoints — call them with curl, never PHP CLI
+# (the code relies on $_SERVER['HTTP_HOST'] and $_GET).
+# Take the rules and schedules from the project's CRON.md.
+# Redirect output to /proc/1/fd/1 so it lands in `docker compose logs app-dev` (or app-prod).
+#
+# Example:
+# 0  *  * * *   root  curl -s http://localhost/cron/external-assets.php > /proc/1/fd/1 2>&1
+
+# ! MIND ABOUT ADDING A TRAILING NEWLINE TO THIS FILE !

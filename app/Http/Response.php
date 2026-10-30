@@ -44,13 +44,13 @@ trait Response
         header_remove('Server');
 
         // Set allow methods
-        if (ROUTING_ALLOW_METHODS) {
+        if (APP_ROUTING_ALLOW_METHODS) {
             header('Access-Control-Allow-Methods: ' . implode(', ', $router->getAllowedMethods()));
         }
 
         // Set allow origin
-        if (ROUTING_ALLOW_ORIGIN) {
-            $allowOrigin = is_array(ROUTING_ALLOW_ORIGIN) ? ROUTING_ALLOW_ORIGIN : [ROUTING_ALLOW_ORIGIN];
+        if (APP_ROUTING_ALLOW_ORIGIN) {
+            $allowOrigin = is_array(APP_ROUTING_ALLOW_ORIGIN) ? APP_ROUTING_ALLOW_ORIGIN : [APP_ROUTING_ALLOW_ORIGIN];
             header('Access-Control-Allow-Origin: ' . implode(', ', $allowOrigin));
         }
 

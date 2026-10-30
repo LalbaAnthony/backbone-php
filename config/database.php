@@ -4,7 +4,7 @@
  * Database settings
  */
 
-define('DATABASE_USER', (string) $_envs['DATABASE_USER'] ?? '');
-define('DATABASE_PASSWORD', (string) $_envs['DATABASE_PASSWORD'] ?? '');
-define('DATABASE_HOST', (string) $_envs['DATABASE_HOST'] ?? '');
-define('DATABASE_NAME', (string) $_envs['DATABASE_NAME'] ?? '');
+define('DB_USER', (string) getenv('DB_USER') ?? '');
+define('DB_PASSWORD', (string) getenv('DB_PASSWORD') ?? '');
+define('DB_HOST', (string) getenv('DB_HOST') ?? '');
+define('DB_NAME', (string) getenv('DB_NAME') ?? '');

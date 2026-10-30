@@ -128,7 +128,7 @@ class Router
 
                 $routeOrCallable = $methods[$method];
 
-                if (ROUTING_ALLOW_METHODS && is_array($methods)) {
+                if (APP_ROUTING_ALLOW_METHODS && is_array($methods)) {
                     $allowedMethods = array_keys($methods);
                     $this->setAllowedMethods($allowedMethods);
                 }
@@ -174,7 +174,7 @@ class Router
      */
     public function force(Route $route, mixed $data = null): void
     {
-        if (ROUTING_ALLOW_METHODS) {
+        if (APP_ROUTING_ALLOW_METHODS) {
             $this->setAllowedMethods(self::HTTP_METHODS, false);
         }
         $this->setRoute($route);

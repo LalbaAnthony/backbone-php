@@ -1,0 +1,10 @@
+.git
+.env*
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose*.yml
+*.md
+setup.sh
+setup.ps1
+infra/mysql/

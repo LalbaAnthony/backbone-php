@@ -6,14 +6,10 @@ use App\Database\DatabaseManager;
 require_once __DIR__ . '/autoloader.php';
 require_once __DIR__ . '/exceptionhandler.php';
 
-require_once __DIR__ . '/dotenvloader.php'; // Load environment variables in $_envs file
-
 require_once __DIR__ . '/config/app.php';
 require_once __DIR__ . '/config/database.php';
 require_once __DIR__ . '/config/html.php';
 require_once __DIR__ . '/config/routing.php';
-
-unset($_envs); // Clean up $_envs variable once we're done with it
 
 if (APP_DEBUG) {
     ini_set('display_errors', 1);
@@ -25,4 +21,4 @@ if (!gc_enabled()) gc_enable();
 
 require_once __DIR__ . '/aliases.php';
 
-DatabaseManager::init(new Database(DATABASE_HOST, DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD));
+DatabaseManager::init(new Database(DB_HOST, DB_NAME, DB_USER, DB_PASSWORD));
