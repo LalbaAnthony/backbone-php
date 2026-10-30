@@ -174,6 +174,22 @@ class Database
     }
 
     /**
+     * Parses a column value for SQL queries.
+     * 
+     * @param mixed $value The value to parse.
+     * @return string The parsed value.
+     */
+    private function parseColumn(mixed $value): string
+    {
+        switch (gettype($value)) {
+            case 'boolean':
+                return $value ? '1' : '0';
+            default:
+                return "'" . str_replace("'", "''", (string)$value) . "'";
+        }
+    }
+
+    /**
      * Inserts multiple rows into a table.
      * 
      * @param string $table The name of the table.
@@ -186,9 +202,10 @@ class Database
         if (!$fkCheck) $this->setForeignKeyChecks(false);
 
         foreach ($data as $row) {
+            if (empty($row)) continue;
             $columns = implode(', ', array_keys($row));
-            $values = implode("', '", array_map('addslashes', array_values($row)));
-            $query = "INSERT INTO $table ($columns) VALUES ('$values');";
+            $values = implode(', ', array_map([$this, 'parseColumn'], array_values($row)));
+            $query = "INSERT INTO $table ($columns) VALUES ($values);";
             $this->execute($query);
         }
 
