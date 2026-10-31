@@ -3,6 +3,7 @@
 namespace Backbone\View;
 
 use Exception;
+use Backbone\Application;
 use Backbone\Exceptions\IconException;
 
 /**
@@ -17,11 +18,6 @@ use Backbone\Exceptions\IconException;
  */
 class Icon
 {
-    /**
-     * Base directory for icons.
-     */
-    private const ICONS_PATH = __DIR__ . '/../../../ressources/icons';
-
     /**
      * The name of the icon.
      */
@@ -52,7 +48,7 @@ class Icon
         $this->name = $name;
         $this->color = $color;
         $this->size = $size;
-        $this->path = self::ICONS_PATH . '/' . $this->name . '.svg';
+        $this->path = Application::get()->iconsPath() . '/' . $this->name . '.svg';
     }
 
     /**

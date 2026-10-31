@@ -2,6 +2,7 @@
 
 namespace Backbone\Database;
 
+use Backbone\Application;
 use Backbone\Exceptions\NotFoundException;
 use Backbone\Exceptions\FileException;
 use Backbone\Exceptions\DatabaseException;
@@ -13,11 +14,6 @@ use Backbone\Exceptions\DatabaseException;
  */
 class Migrator
 {
-    /**
-     * Path to the migrations directory.
-     */
-    private const MIGRATIONS_PATH = __DIR__ . '/../../../app/Migrations';
-
     /**
      * The Database instance.
      *
@@ -54,9 +50,11 @@ class Migrator
      */
     public function crawl(): void
     {
-        if (!is_dir(self::MIGRATIONS_PATH)) throw new NotFoundException("The migrations directory does not exist : " . self::MIGRATIONS_PATH);
+        $path = Application::get()->migrationsPath();
 
-        $files = glob(self::MIGRATIONS_PATH . '/*.php');
+        if (!is_dir($path)) throw new NotFoundException("The migrations directory does not exist : " . $path);
+
+        $files = glob($path . '/*.php');
         sort($files);
 
         foreach ($files as $file) {

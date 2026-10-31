@@ -3,6 +3,7 @@
 namespace Backbone\Database;
 
 use Exception;
+use Backbone\Application;
 use Backbone\Database\Database;
 use Backbone\Exceptions\DatabaseException;
 use Backbone\Exceptions\FileException;
@@ -19,11 +20,6 @@ class Seeder
      * Char that will split the order and table name in seeds files.
      */
     private const SEEDS_FILE_SEPARATOR = '-';
-
-    /**
-     * Path to the seeds directory.
-     */
-    private const SEEDS_PATH = __DIR__ . '/../../../app/Seeds';
 
     /**
      * The Database instance.
@@ -64,9 +60,11 @@ class Seeder
      */
     public function crawl(): void
     {
-        if (!is_dir(self::SEEDS_PATH)) throw new NotFoundException("The seeds directory does not exist : " . self::SEEDS_PATH);
+        $path = Application::get()->seedsPath();
 
-        $files = glob(self::SEEDS_PATH . '/*.json');
+        if (!is_dir($path)) throw new NotFoundException("The seeds directory does not exist : " . $path);
+
+        $files = glob($path . '/*.json');
         sort($files);
 
         $this->files = $files;

@@ -2,6 +2,7 @@
 
 namespace Backbone\Support;
 
+use Backbone\Application;
 use Backbone\Exceptions\FileException;
 use Exception;
 
@@ -13,11 +14,6 @@ use Exception;
 final class Logger
 {
     private function __construct() {} // Private constructor to prevent instantiation
-
-    /**
-     * Path to the log files directory.
-     */
-    private const LOG_PATH = __DIR__ . '/../../../logs';
 
     /**
      * Types of log messages.
@@ -64,7 +60,7 @@ final class Logger
      */
     private static function log(string $type = 'info', string $message = ''): void
     {
-        $logPath = self::LOG_PATH . '/' . date('Y') . '/' . date('m');
+        $logPath = Application::get()->logsPath() . '/' . date('Y') . '/' . date('m');
         $logFile = $logPath . '/' . date('d') . '.log';
 
         if (!$message) return;

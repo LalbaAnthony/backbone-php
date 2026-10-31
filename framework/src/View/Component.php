@@ -2,6 +2,7 @@
 
 namespace Backbone\View;
 
+use Backbone\Application;
 use Backbone\Exceptions\FileException;
 use Backbone\Exceptions\ComponentException;
 use Backbone\Exceptions\NotFoundException;
@@ -19,11 +20,6 @@ use Exception;
  */
 class Component
 {
-    /**
-     * Base directory for components.
-     */
-    private const COMPONENTS_PATH = __DIR__ . '/../../../ressources/components';
-
     /**
      * Associative array to track printed HTML tags for deduplication.
      */
@@ -88,10 +84,12 @@ class Component
         $this->name = $name;
         $this->props = $props;
         $this->params = $params;
-        $this->phpPath = self::COMPONENTS_PATH . '/' . $name . '/index.php';
-        $this->cssPath = self::COMPONENTS_PATH . '/' . $name . '/style.css';
-        $this->jsPath = self::COMPONENTS_PATH . '/' . $name . '/index.js';
-        $this->htmlPath = self::COMPONENTS_PATH . '/' . $name . '/index.html';
+
+        $dir = Application::get()->componentsPath() . '/' . $name;
+        $this->phpPath = $dir . '/index.php';
+        $this->cssPath = $dir . '/style.css';
+        $this->jsPath = $dir . '/index.js';
+        $this->htmlPath = $dir . '/index.html';
     }
 
     /**
