@@ -11,25 +11,9 @@ Basically, its a learning project to figure out how a framework can work under t
 
 - Copy the `.env.example` file to `.env` and set your environment variables.
 - Start project with `script-setup.*`
-- Run `reset` to create the database schema and seed initial data.
+- Run the migration and seed the initial data.
 
 ## 📐 Architecture
-
-- `app/` : contains the application code (Controllers, Models, Database, Http, ...)
-  - `Controllers/` `*` : contains the controllers
-  - `Database/` : contains the database related classes (Connection, Migrator, Seeder, ...)
-  - `Exceptions/` `*` : contains the custom exceptions
-  - `Http/` : contains the HTTP related classes (Request, Response, Router, Controller, ...)
-  - `Migrations/` `*`: contains the migration files
-  - `Models/` `*` : contains the models
-  - `Util/` : contains utility classes as helpers, faker, ...
-  - `View/` : contains the view related classes (View, Component, ...) 
-- `config/` : contains the configuration files
-- `public/` : contains the public files (entrypoint index.php, assets, ...)
-- `ressources/` : contains the views, icons, ...
-- ...
-
-In the `app/` folder, folders marked with `*` are meant to be modified by the user to add application specific code. All the other folders are meant to contain framework code only.
 
 There is no `vendor/` folder since this project is dependency free (and will always be).
 
@@ -64,7 +48,7 @@ dump($post);
 
 Seeder uses JSON files to populate the database with initial data.
 
-Seeding data is located in the `seeds/` folder.
+Seeding data is located in the `app/Seeds/` folder.
 All files are named after the table they seed with the order prefix to define the order of execution. Example: `001-users.json`, `002-posts.json`, ...
 
 Order and table name are separated by `-` character.
