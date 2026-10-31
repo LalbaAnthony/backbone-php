@@ -10,12 +10,8 @@ Basically, its a learning project to figure out how a framework can work under t
 ## 🚀 Quick start
 
 - Copy the `.env.example` file to `.env` and set your environment variables.
-- Web server setup:
-  - Config the `RewriteBase` in the `public/.htaccess` file if needed.
-  - Start a local server (ex: XAMPP, MAMP, ...)
-- Database setup:
-  - Create a database and set the connection parameters in the `.env` file.
-  - Go to `/reset` script in the `public/` folder to create the database schema and seed initial data.
+- Start project with `script-setup.*`
+- Run `reset` to create the database schema and seed initial data.
 
 ## 📐 Architecture
 

@@ -61,7 +61,7 @@ if (!function_exists('pluck')) {
     }
 }
 
-if (!function_exists('comp')) {
+if (!function_exists('component')) {
     function component(mixed ...$vars): void
     {
         Component::display(...$vars);
