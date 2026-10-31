@@ -33,10 +33,10 @@ if (!function_exists('e')) {
     }
 }
 
-if (!function_exists('printLine')) {
-    function printLine(mixed ...$vars): void
+if (!function_exists('line')) {
+    function line(mixed ...$vars): string
     {
-        Helpers::printLine(...$vars);
+        return Helpers::line(...$vars);
     }
 }
 

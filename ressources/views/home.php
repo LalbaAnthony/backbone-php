@@ -28,21 +28,21 @@
     <section>
         <?php component('section-title', ['title' => 'Buttons']) ?>
         <div>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'light', 'outline' => false]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'light', 'outline' => true]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'dark', 'outline' => false]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'dark', 'outline' => true]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'danger', 'outline' => false]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'warning', 'outline' => false]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'success', 'outline' => false]) ?>
-            <?= component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'info', 'outline' => false]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'light', 'outline' => false]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'light', 'outline' => true]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'dark', 'outline' => false]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'dark', 'outline' => true]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'danger', 'outline' => false]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'warning', 'outline' => false]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'success', 'outline' => false]) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Lorem', 'color' => 'info', 'outline' => false]) ?>
         </div>
     </section>
     <section>
         <?php component('section-title', ['title' => 'Pills']) ?>
         <div>
-            <?= component('pill', ['href' => APP_URL, 'label' => 'Pill 1', 'color' => '#3490dc']) ?>
-            <?= component('pill', ['label' => 'Pill 2', 'color' => '#e3342f']) ?>
+            <?php component('pill', ['href' => APP_URL, 'label' => 'Pill 1', 'color' => '#3490dc']) ?>
+            <?php component('pill', ['label' => 'Pill 2', 'color' => '#e3342f']) ?>
         </div>
     </section>
 </main>

@@ -83,8 +83,8 @@ final class Logger
             $ip = getenv("REMOTE_ADDR");
             $type = self::TYPES[$type]['label'];
 
-            $line = PHP_EOL . "[" . $date . "][" . $ip . "] " . $type . ": " . $message;
-
+            $line = Helpers::line("[" . $date . "][" . $ip . "] " . $type . ": " . $message);
+            
             fwrite($fileopen, $line);
             fclose($fileopen);
         } catch (Exception $e) {

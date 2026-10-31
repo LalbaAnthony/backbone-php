@@ -10,7 +10,7 @@ return [
         'GET'  => function () {
             if (APP_ENV == 'dev') {
                 Seeder::run();
-                printLine("Database seeded successfully.");
+                echo line("Database seeded successfully.");
             }
         },
     ],
@@ -18,7 +18,7 @@ return [
         'GET'  => function () {
             if (APP_ENV == 'dev') {
                 Migrator::run();
-                printLine("Database migrated successfully.");
+                echo line("Database migrated successfully.");
             }
         },
     ],
@@ -27,7 +27,7 @@ return [
             if (APP_ENV == 'dev') {
                 Migrator::run();
                 Seeder::run();
-                printLine("Database reset and seeded successfully.");
+                echo line("Database reset and seeded successfully.");
             }
         },
     ],

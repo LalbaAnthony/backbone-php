@@ -5,6 +5,6 @@
         </a>
     </div>
     <div class="header-login">
-        <?= component('button', ['href' => APP_URL . '/login', 'label' => 'Connexion', 'color' => 'dark', 'outline' => true]) ?>
+        <?php component('button', ['href' => APP_URL . '/login', 'label' => 'Connexion', 'color' => 'dark', 'outline' => true]) ?>
     </div>
 </header>

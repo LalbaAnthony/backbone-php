@@ -206,9 +206,9 @@ final class Helpers
     /**
      * Print a line with appropriate line break based on SAPI.
      * @param string $line
-     * @return void
+     * @return string
      */
-    public static function printLine(string $line): void
+    public static function line(string $line): string
     {
         $lineBreaker = match (php_sapi_name()) {
             'cli' => PHP_EOL,
@@ -216,7 +216,7 @@ final class Helpers
             default => '<br>',
         };
 
-        echo $line . $lineBreaker;
+        return $line . $lineBreaker;
     }
 
     /**

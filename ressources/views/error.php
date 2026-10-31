@@ -3,8 +3,8 @@
         <h1 class="error-title"><?= $code ?? '500' ?></h1>
         <p class="error-description"><?= $message ?? '' ?></p>
         <div class="error-actions">
-            <?= component('button', ['href' => APP_URL, 'label' => 'Home', 'color' => 'light', 'outline' => true]) ?>
-            <?= component('button', ['id' => 'goback', 'label' => 'Go back', 'color' => 'dark']) ?>
+            <?php component('button', ['href' => APP_URL, 'label' => 'Home', 'color' => 'light', 'outline' => true]) ?>
+            <?php component('button', ['id' => 'goback', 'label' => 'Go back', 'color' => 'dark']) ?>
         </div>
     </div>
 </main>
