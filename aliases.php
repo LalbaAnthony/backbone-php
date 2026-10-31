@@ -1,9 +1,9 @@
 <?php
 
-use App\Util\Helpers;
-use App\View\Component;
-use App\Http\Router;
-use App\View\Icon;
+use Backbone\Support\Helpers;
+use Backbone\View\Component;
+use Backbone\Http\Router;
+use Backbone\View\Icon;
 
 if (!function_exists('dump')) {
     function dump(mixed ...$vars): void

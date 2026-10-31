@@ -1,8 +1,8 @@
 <?php
 
-use App\Database\Migrator;
-use App\Database\Seeder;
-use App\Http\Route;
+use Backbone\Database\Migrator;
+use Backbone\Database\Seeder;
+use Backbone\Http\Route;
 
 return [
     // Scripts

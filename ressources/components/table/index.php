@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Router;
+use Backbone\Http\Router;
 
 ?>
 

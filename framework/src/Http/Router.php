@@ -1,0 +1,288 @@
+<?php
+
+namespace Backbone\Http;
+
+use Backbone\Exceptions\RoutingException;
+use Backbone\View\Html;
+use Exception;
+
+class Router
+{
+    use Utils;
+    use Html;
+
+    private Request $request;
+    private mixed $route;
+    private array $allowedMethods = [];
+
+    /** @var Route[] */
+    private array $routes = [];
+
+    /**
+     * Router constructor.
+     * 
+     * @param Request $request
+     * @param array $routes
+     */
+    public function __construct(Request $request, array $routes = [])
+    {
+        $this->request = $request;
+        $this->routes = $routes;
+    }
+
+    /**
+     * Get the allowed methods for the current request.
+     * 
+     * @return array
+     */
+    public function getAllowedMethods(): array
+    {
+        return $this->allowedMethods;
+    }
+
+    /**
+     * Validate HTTP methods.
+     * 
+     * @param array $methods
+     * @return bool
+     */
+    private static function areMethodsValid(array $methods = []): bool
+    {
+        if (empty($methods)) return true;
+
+        foreach ($methods as $method) {
+            self::verifyMethod($method);
+        }
+
+        return true;
+    }
+
+    /**
+     * Set the allowed methods for the current request.
+     * 
+     * @param array $methods
+     * @return void
+     */
+    public function setAllowedMethods(array $methods, bool $verify = true): void
+    {
+        if ($verify && !self::areMethodsValid($methods)) {
+            throw new RoutingException("Invalid HTTP methods", 500);
+        }
+
+        $this->allowedMethods = $methods;
+    }
+
+    /**
+     * Set the current route
+     * 
+     * @param Route $route
+     * @return void
+     */
+    public function setRoute(Route|callable $route): void
+    {
+        $this->route = $route;
+    }
+
+    /**
+     * Add a new route
+     * 
+     * @param Route $route
+     * @return void
+     */
+    public function addRoute(Route $route): void
+    {
+        $this->routes[] = $route;
+    }
+
+    /**
+     * Get all registered routes
+     * 
+     * @return Route[]
+     */
+    public function getRoutes(): array
+    {
+        return $this->routes;
+    }
+
+    /**
+     * Find the route based of URI and method
+     * 
+     * @return void
+     */
+    public function findAndSet(): void
+    {
+        $uri = trim($this->request->uri, '/');
+        $method = $this->request->method;
+
+        foreach ($this->routes as $pattern => $methods) {
+
+            // Convert pattern to regex
+            $regex = preg_replace('#\{([a-zA-Z0-9_]+)\}#', '(?P<$1>[^/]+)', $pattern);
+            $regex = '#^' . trim($regex, '/') . '$#';
+
+            if (preg_match($regex, $uri, $matches)) {
+
+                if (!isset($methods[$method])) {
+                    throw new RoutingException("Method not allowed", 405);
+                }
+
+                $routeOrCallable = $methods[$method];
+
+                if (APP_ROUTING_ALLOW_METHODS && is_array($methods)) {
+                    $allowedMethods = array_keys($methods);
+                    $this->setAllowedMethods($allowedMethods);
+                }
+
+                if ($routeOrCallable instanceof Route || is_callable($routeOrCallable)) {
+                    $this->setRoute($routeOrCallable);
+                }
+
+                // Store extracted parameters inside request
+                $this->request->patterns = array_filter($matches, fn($k) => !is_int($k), ARRAY_FILTER_USE_KEY);
+
+                return;
+            }
+        }
+
+        throw new RoutingException("Route not found: " . $uri, 404);
+    }
+
+    /**
+     * Run the current route
+     * 
+     * @return void
+     */
+    private function run(mixed $data = null): void
+    {
+        if ($this->route instanceof Route) {
+            $this->route->execute($this->request, $data);
+            return;
+        }
+
+        if (is_callable($this->route)) {
+            echo call_user_func($this->route, $this->request, $data);
+            return;
+        }
+
+        throw new RoutingException("Invalid route handler", 500);
+    }
+
+    /**
+     * Force execute a specific route
+     * 
+     * @return void
+     */
+    public function force(Route $route, mixed $data = null): void
+    {
+        if (APP_ROUTING_ALLOW_METHODS) {
+            $this->setAllowedMethods(self::HTTP_METHODS, false);
+        }
+        $this->setRoute($route);
+        $this->run($data);
+    }
+
+    /**
+     * Dispatch the request to the appropriate controller
+     * 
+     * @return void
+     */
+    public function dispatch(): void
+    {
+        $this->findAndSet();
+        $this->run();
+    }
+
+    /**
+     * Get the current URL.
+     *
+     * @return string
+     */
+    public static function currentUrl(bool $queries = true): string
+    {
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+        $host = $_SERVER['HTTP_HOST'];
+        $uri = $_SERVER['REQUEST_URI'];
+
+        $url = $protocol . $host . $uri;
+
+        if (!$queries) $url = explode('?', $url)[0];
+
+        return $url;
+    }
+
+    /**
+     * Get the current URL queries.
+     *
+     * @return array
+     */
+    public static function currentQueries(): array
+    {
+        $queries = [];
+        if (!empty($_SERVER['QUERY_STRING'])) {
+            parse_str($_SERVER['QUERY_STRING'], $queries);
+        }
+
+        return $queries;
+    }
+
+    /**
+     * Check if the method is an allowed HTML form method.
+     * 
+     * @param string $method
+     * @return string
+     */
+    public static function isMethodHtml(string $method): bool
+    {
+        $method = strtoupper($method);
+        return in_array($method, ['GET', 'POST']);
+    }
+
+    /**
+     * Limit method to HTML form methods.
+     * 
+     * @param string $method
+     * @return string
+     */
+    public static function limitMethodHtml(string $method): string
+    {
+        if (self::isMethodHtml($method)) {
+            return $method;
+        }
+
+        return 'POST';
+    }
+
+    /**
+     * Build a URL with query parameters.
+     * @param string $url
+     * @param array $params
+     * @return string
+     */
+    public static function buildUrl(?string $url, array $params = [], bool $keep = false): string
+    {
+        if (!$url || empty($url)) $url = self::currentUrl(false);
+        if (empty($params)) return $url;
+
+        if ($keep) {
+            $currentQueries = self::currentQueries();
+            $params = array_merge($currentQueries, $params);
+        }
+
+        $query = http_build_query($params);
+        return $url . '?' . $query;
+    }
+
+    /**
+     * Generate a hidden input field for HTTP method override.
+     * 
+     * @param $method
+     * @return string
+     */
+    public static function methodInputTag(string $method): string
+    {
+        if (empty($method)) return '';
+        if (!self::verifyMethod($method)) throw new Exception("Invalid HTTP method: $method");
+
+        return '<input type="hidden" name="' . self::FORM_METHOD_KEY . '" value="' . strtoupper($method) . '">';
+    }
+}

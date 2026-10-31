@@ -1,6 +1,6 @@
 <?php
 
-use App\Util\Helpers;
+use Backbone\Support\Helpers;
 
 $id = isset($id) ? $id : Helpers::randomHex(8);
 $class = isset($class) ? $class : '';

@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Router;
-use App\Http\Request;
+use Backbone\Http\Router;
+use Backbone\Http\Request;
 
 require_once __DIR__ . '/../bootstrap.php';
 

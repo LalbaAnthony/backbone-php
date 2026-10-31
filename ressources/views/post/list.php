@@ -1,7 +1,7 @@
 <?php
 
-use App\Util\Helpers;
-use App\View\Component;
+use Backbone\Support\Helpers;
+use Backbone\View\Component;
 
 ?>
 

@@ -2,9 +2,8 @@
 
 namespace App\Controllers\View;
 
-use App\Http\Request;
-use App\Models\Post;
-use App\Http\Controller;
+use Backbone\Http\Request;
+use Backbone\Http\Controller;
 
 class HomeController extends Controller
 {

@@ -1,7 +1,7 @@
 <?php
 
-use App\Util\Helpers;
-use App\Http\Router;
+use Backbone\Support\Helpers;
+use Backbone\Http\Router;
 
 $action = isset($action) ? $action : Router::currentUrl(false);
 $method = isset($method) ? Router::limitMethodHtml($method) : 'GET';

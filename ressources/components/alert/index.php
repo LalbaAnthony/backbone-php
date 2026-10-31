@@ -1,6 +1,6 @@
 <?php
 
-use App\Util\Helpers;
+use Backbone\Support\Helpers;
 
 $type = isset($type) ? $type : 'info';
 $message = isset($message) ? $message : '';

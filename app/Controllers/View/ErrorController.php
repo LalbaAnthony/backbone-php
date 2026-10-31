@@ -2,8 +2,8 @@
 
 namespace App\Controllers\View;
 
-use App\Http\Request;
-use App\Http\Controller;
+use Backbone\Http\Request;
+use Backbone\Http\Controller;
 
 class ErrorController extends Controller
 {

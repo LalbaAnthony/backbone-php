@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Util\Helpers;
-use App\Database\Model;
+use Backbone\Support\Helpers;
+use Backbone\Database\Model;
 
 class User extends Model
 {

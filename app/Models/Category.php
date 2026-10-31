@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Database\Model;
+use Backbone\Database\Model;
 
 class Category extends Model
 {

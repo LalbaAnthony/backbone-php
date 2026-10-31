@@ -2,10 +2,10 @@
 
 namespace App\Controllers\API;
 
-use App\Http\Request;
+use Backbone\Http\Request;
+use Backbone\Http\Controller;
+use Backbone\Database\Model;
 use App\Models\Category;
-use App\Http\Controller;
-use App\Database\Model;
 
 class CategoryController extends Controller
 {

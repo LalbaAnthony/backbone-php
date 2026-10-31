@@ -1,7 +1,7 @@
 <?php
 
-use App\Database\Database;
-use App\Database\Migration;
+use Backbone\Database\Database;
+use Backbone\Database\Migration;
 
 return new class extends Migration
 {

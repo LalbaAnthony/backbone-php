@@ -2,11 +2,11 @@
 
 namespace App\Controllers\View;
 
-use App\Http\Request;
+use Backbone\Http\Request;
+use Backbone\Http\Controller;
+use Backbone\Support\Validator;
 use App\Models\Post;
-use App\Http\Controller;
 use App\Models\Category;
-use App\Util\Validator;
 
 class PostController extends Controller
 {

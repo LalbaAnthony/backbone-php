@@ -1,7 +1,7 @@
 <?php
 
-use App\Database\Database;
-use App\Database\DatabaseManager;
+use Backbone\Database\Database;
+use Backbone\Database\DatabaseManager;
 
 require_once __DIR__ . '/autoloader.php';
 require_once __DIR__ . '/exceptionhandler.php';

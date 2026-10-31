@@ -1,7 +1,7 @@
 <?php
 
-use App\Util\Logger;
-use App\Http\Route;
+use Backbone\Support\Logger;
+use Backbone\Http\Route;
 
 set_exception_handler(function ($e) {
     global $router;
