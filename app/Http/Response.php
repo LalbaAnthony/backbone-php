@@ -24,6 +24,18 @@ trait Response
     }
 
     /**
+     * Remove sensitive headers from the response
+     *
+     * @return void
+     */
+    private function removeSensitiveHeaders(): void
+    {
+        header_remove('X-Powered-By');
+        header_remove('X-Frame-Options');
+        header_remove('Server');
+    }
+
+    /**
      * Prepare response headers
      * 
      * @param int $code
@@ -38,10 +50,7 @@ trait Response
 
         http_response_code($code);
 
-        // Remove sensitive headers
-        header_remove('X-Powered-By');
-        header_remove('X-Frame-Options');
-        header_remove('Server');
+        $this->removeSensitiveHeaders();
 
         // Set allow methods
         if (APP_ROUTING_ALLOW_METHODS) {
