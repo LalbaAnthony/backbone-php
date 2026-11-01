@@ -1,9 +1,16 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-logo-light.svg" alt="Backbone PHP Logo" width="150"/>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-lockup-light.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-lockup-dark.svg">
+    <img alt="Backbone PHP" src="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-lockup-light.svg" width="350" height="70" style="max-width: 100%;">
+  </picture>
 </p>
-<br>
 
-# Backbone PHP
+<p align="center">
+  A utility-first PHP framework for rapidly building custom web applications.
+</p>
+
+---
 
 This is a simple PHP framework for building web applications.
 Just a pure mix of Laravel, Symfony, ... with a bit of my own touch.
