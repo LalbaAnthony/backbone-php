@@ -1,4 +1,9 @@
-# Framework PHP
+<p align="center">
+  <img src="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-logo-light.svg" alt="Backbone PHP Logo" width="150"/>
+</p>
+<br>
+
+# Backbone PHP
 
 This is a simple PHP framework for building web applications.
 Just a pure mix of Laravel, Symfony, ... with a bit of my own touch.
