@@ -1,8 +1,8 @@
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-lockup-light.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-lockup-dark.svg">
-    <img alt="Backbone PHP" src="https://raw.githubusercontent.com/LalbaAnthony/backbone-php/main/.github/assets/backbone-php-lockup-light.svg" width="350" height="70" style="max-width: 100%;">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/LalbaAnthony/backbone-php-assets/main/source/logo-lockup/backbone-php-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/LalbaAnthony/backbone-php-assets/main/source/logo-lockup/backbone-php-light.svg">
+    <img alt="Backbone PHP" src="https://raw.githubusercontent.com/LalbaAnthony/backbone-php-assets/main/source/logo-lockup/backbone-php-dark.svg" width="350" height="70" style="max-width: 100%;">
   </picture>
 </p>
 
@@ -19,15 +19,21 @@ It isnt mean to be used in production (at least for now), since it might be bugg
 
 Basically, its a learning project to figure out how a framework can work under the hood and how to build one from scratch.
 
+---
+
 ## 🚀 Quick start
 
 - Copy the `.env.example` file to `.env` and set your environment variables.
 - Start project with `script-setup.*`
 - Run the migration and seed the initial data.
 
+---
+
 ## 📐 Architecture
 
 There is no `vendor/` folder since this project is dependency free (and will always be).
+
+---
 
 ## ⌨️ Code
 
@@ -41,7 +47,7 @@ Usage example:
 // =========================
 
 $post = new Post([
-    'title' => 'My first post',
+  'title' => 'My first post',
     'content' => 'This is the content of my first post.',
 ]);
 $post->save(); // Inserts a new record and sets the ID, created_at, updated_at fields
@@ -73,3 +79,11 @@ You can define class aliases in `aliases.php` to simplify class references throu
 
 All icons are stored in `ressources/icons` and come from [Lucide Icons](https://lucide.dev/).
 Can download them at https://github.com/mallardduck/blade-lucide-icons/tree/main/resources/svg.
+
+---
+
+## 📝 - License
+
+See the [LICENSE.md](LICENSE.md) file for details.
+
+---
