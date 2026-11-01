@@ -3,7 +3,7 @@
 # YAML merge (<<) is shallow: nested maps (build, environment) are merged explicitly in each service.
 # Enable exactly one of the two profiles: both bind APP_PORT.
 # Prod publishes on 127.0.0.1 only: the site is reached through a reverse proxy on the host,
-# pma and db through an SSH tunnel.
+# pma and database through an SSH tunnel.
 x-app-build: &app-build
   context: .
   args:
@@ -21,7 +21,7 @@ x-app-env: &app-env
   APP_ENV: ${APP_ENV}
   APP_ROUTING_ALLOW_METHODS: ${APP_ROUTING_ALLOW_METHODS}
   APP_ROUTING_ALLOW_ORIGIN: ${APP_ROUTING_ALLOW_ORIGIN}
-  DB_HOST: ${DB_HOST:-db}
+  DB_HOST: ${DB_HOST:-database}
   DB_NAME: ${DB_NAME}
   DB_USER: ${DB_USER}
   DB_PASS: ${DB_PASS}
@@ -37,7 +37,7 @@ x-app-env: &app-env
 
 x-app: &app
   depends_on:
-    db:
+    database:
       condition: service_healthy
   networks:
     - common_network
@@ -54,7 +54,7 @@ x-app: &app
 # Shared phpMyAdmin definition. pma-dev: all interfaces + auto-login. pma-prod: 127.0.0.1 + login form.
 x-pma-env: &pma-env
   TZ: Europe/Paris
-  PMA_HOST: db
+  PMA_HOST: database
   APACHE_SERVER_NAME: localhost
 
 x-pma: &pma
@@ -66,7 +66,7 @@ x-pma: &pma
     start_period: 15s
     retries: 3
   depends_on:
-    db:
+    database:
       condition: service_healthy
   networks:
     - common_network
@@ -113,7 +113,7 @@ services:
       <<: *app-env
       APP_ENV: prod
 
-  db:
+  database:
     image: mysql:8.0
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
@@ -127,11 +127,11 @@ services:
       MYSQL_PASSWORD: ${DB_PASS}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     # Shared by both profiles, loopback only (host DB client / SSH tunnel). DB_PORT is the host side:
-    # containers always reach db:3306.
+    # containers always reach database:3306.
     ports:
       - "127.0.0.1:${DB_PORT:-3306}:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - database_data:/var/lib/mysql
     networks:
       - common_network
     deploy:
@@ -189,7 +189,7 @@ services:
     restart: unless-stopped
 
 volumes:
-  db_data:
+  database_data:
 
 networks:
   common_network:
